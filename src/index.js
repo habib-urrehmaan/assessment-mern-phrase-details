@@ -7,8 +7,10 @@ import mainUnauthRouter from './routes/v1/unauthIndex.js';
 import mainAuthRouter from './routes/v1/authIndex.js';
 import passportConfig from './middlewares/passport.js';
 import { errors } from './constants/errorMessages.js';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);

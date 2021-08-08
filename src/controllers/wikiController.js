@@ -2,11 +2,20 @@
   * get (all and by id), and update, and delete 
   * wikipedia posts you will get calling wikipedia api 
   * */
-export default{
+import wikiRecordsModel from '../models/wikiRecords.js';
 
-  async insertWikiRecord(){
+export default {
+
+  async insertWikiRecord(obj){
     // Your logic here
-
+    try {
+    const wikiRecord = new wikiRecordsModel({ phrase: obj.query.normalized.from, details: JSON.stringify(obj.query.pages)});
+    wikiRecord.save();
+    return true;
+    } catch(err) {
+      console.log('err=', err);
+      return false;
+    }
   },
 
   async getAllWikiRecords(){
